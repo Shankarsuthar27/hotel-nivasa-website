@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import logoImg from "./assets/hotel_nivasa_logo_transparent.png";
+import room1Img from "./assets/nivasa-deluxe.jpg";
+import room2Img from "./assets/nivasa-superior.jpg";
+import room3Img from "./assets/nivasa-double-single.jpg";
 
 const photos = {
   hero: "https://images.unsplash.com/photo-1694366454450-7979697bab21?auto=format&fit=crop&w=2000&q=88",
@@ -6,9 +10,9 @@ const photos = {
     "https://images.unsplash.com/photo-1596901224267-67ca38199090?auto=format&fit=crop&w=1200&q=85",
   detail:
     "https://images.unsplash.com/photo-1777707461015-096e3de3604c?auto=format&fit=crop&w=1000&q=85",
-  room1: "/assets/nivasa-deluxe.jpg",
-  room2: "/assets/nivasa-superior.jpg",
-  room3: "/assets/nivasa-double-single.jpg",
+  room1: room1Img,
+  room2: room2Img,
+  room3: room3Img,
   dining:
     "https://images.unsplash.com/photo-1744776411221-702f2848b0b2?auto=format&fit=crop&w=1200&q=85",
   fort: "https://images.unsplash.com/photo-1636788989843-c1815de9c6ef?auto=format&fit=crop&w=1200&q=85",
@@ -912,7 +916,7 @@ export default function App() {
               title="Hotel Nivasa"
             >
               <img
-                src="/assets/hotel_nivasa_logo_transparent.png"
+                src={logoImg}
                 alt="Hotel Nivasa"
                 className="co-logo-img"
               />
@@ -1375,7 +1379,7 @@ export default function App() {
             navigateToHome();
           }}
         >
-          <img src="/assets/hotel_nivasa_logo_transparent.png" alt="Hotel Nivasa" />
+          <img src={logoImg} alt="Hotel Nivasa" />
         </a>
         <nav className={menuOpen ? "open" : ""} aria-label="Main navigation">
           {navItems.map(([label, target, path]) => (
@@ -1920,7 +1924,7 @@ export default function App() {
 
       <footer>
         <div className="footer-brand">
-          <img src="/assets/hotel_nivasa_logo_transparent.png" alt="Hotel Nivasa" />
+          <img src={logoImg} alt="Hotel Nivasa" />
           <p>Where the gracious spirit of Marwar meets the quiet comforts of today.</p>
         </div>
         <div className="footer-links">
@@ -2018,7 +2022,7 @@ export default function App() {
               }}
               style={{ textDecoration: "none" }}
             >
-              <img src="/assets/hotel_nivasa_logo_transparent.png" alt="Hotel Nivasa" />
+              <img src={logoImg} alt="Hotel Nivasa" />
               <div className="be-brand-text">
                 <h1>Hotel Nivasa</h1>
                 <span>Jalore, Rajasthan</span>

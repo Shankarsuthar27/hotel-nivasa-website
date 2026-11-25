@@ -1,6 +1,7 @@
 import React, { Component, type ErrorInfo, type ReactNode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import logoImg from "./assets/hotel_nivasa_logo_transparent.png";
 import "./index.css";
 
 interface Props {
@@ -43,7 +44,7 @@ class ErrorBoundary extends Component<Props, State> {
           }}
         >
           <img
-            src="/assets/hotel_nivasa_logo_transparent.png"
+            src={logoImg}
             alt="Hotel Nivasa"
             style={{ height: "64px", marginBottom: "24px" }}
           />
