@@ -1,0 +1,10 @@
+{
+  "description": "Explore Hotel Nivasa in Jalor, Rajasthan, view its location, and check availability by selecting travel dates, guests, and rooms.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
