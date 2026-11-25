@@ -393,10 +393,10 @@ export default function App() {
     if (typeof window !== "undefined") {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
-      if (path.startsWith("/checkout") || hash === "#checkout") {
+      if (path.includes("/checkout") || hash === "#checkout") {
         return "/checkout";
       }
-      if (path.startsWith("/availability") || hash === "#availability") {
+      if (path.includes("/availability") || hash === "#availability") {
         return "/availability";
       }
     }
@@ -423,7 +423,7 @@ export default function App() {
     if (typeof window !== "undefined") {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
-      return path.startsWith("/availability") || hash === "#availability";
+      return path.includes("/availability") || hash === "#availability";
     }
     return false;
   });
@@ -535,10 +535,17 @@ export default function App() {
 
       const knownSections = ["story", "accommodations", "dining", "experiences", "gallery", "contact"];
       const matchedSection = knownSections.find(
-        (sec) => path === `/${sec}` || path.startsWith(`/${sec}/`) || hash === `#${sec}`
+        (sec) =>
+          path.endsWith(`/${sec}`) ||
+          path.endsWith(`/${sec}/`) ||
+          path.includes(`/${sec}/`) ||
+          hash === `#${sec}`
       );
 
-      if (path.startsWith("/checkout") || hash === "#checkout") {
+      const isCheckout = path.includes("/checkout") || hash === "#checkout";
+      const isAvailability = path.includes("/availability") || hash === "#availability";
+
+      if (isCheckout) {
         setCurrentRoute("/checkout");
         setBookingOpen(false);
         if (!selectedPlan && !matched) {
@@ -550,7 +557,7 @@ export default function App() {
             price: bookingRooms[0].plans[0].price,
           });
         }
-      } else if (path.startsWith("/availability") || hash === "#availability") {
+      } else if (isAvailability) {
         setCurrentRoute("/availability");
         setBookingOpen(true);
       } else {
@@ -759,11 +766,8 @@ export default function App() {
 
   const checkInDate = new Date(`${checkIn}T00:00:00`);
   const checkOutDate = new Date(`${checkOut}T00:00:00`);
-  const diffDays = Math.max(
-    1,
-    Math.round((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24))
-  );
-  const nights = diffDays;
+  const rawDiff = Math.round((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
+  const nights = Number.isNaN(rawDiff) || rawDiff < 1 ? 1 : rawDiff;
 
   const tariff = selectedPlan ? selectedPlan.price * nights * guests.rooms : 0;
   const discount = promoApplied ? Math.round(tariff * 0.1) : 0;
